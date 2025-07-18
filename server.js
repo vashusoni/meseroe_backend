@@ -9,11 +9,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ✅ 1. auth.routes.js को import करो
-const authRoutes = require('./routes/auth.routes'); // ✔️ सही path दें
+// ✅ 1. Routes import करो
+const authRoutes = require('./routes/auth.routes');
+const stallRoutes = require('./routes/stallAccount.routes'); // 
 
-// ✅ 2. उसे base route पर use करो
-app.use('/api/auth', authRoutes); // ✔️ अब route एक्टिव हो जाएगा
+// ✅ 2. Use routes with base paths
+app.use('/api/auth', authRoutes);
+app.use('/api/stall', stallRoutes); 
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
